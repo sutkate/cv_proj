@@ -13,7 +13,7 @@ def parse_args():
         help='path to output image',
         type=str,
         dest='output',
-        default='output.jpg',
+        default=None,
     )
     parser.add_argument(
         '-m', '--mode',
@@ -27,21 +27,7 @@ def parse_args():
         help='input strength of filter',
         type=float,
         dest='value',
-        default=1,
-    )
-    parser.add_argument(
-        '-r', '--radius',
-        help='radius of filter',
-        type=int,
-        dest='radius',
-        default=150,
-    )
-    parser.add_argument(
-        '-p', '--pixelate',
-        help='pixelate',
-        type=int,
-        dest='pixelate',
-        default=15,
+        default=None,
     )
     args = parser.parse_args()
     return args
