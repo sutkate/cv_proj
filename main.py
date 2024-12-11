@@ -22,11 +22,11 @@ def main():
         elif args.mode == 'vignette':
             if args.value is None:
                 raise ValueError("Value is None")
-            result = filters.vignette(img, args.value)
+            result = filters.vignette(img, int(args.value))
         elif args.mode == 'pixelate':
             if args.value is None:
                 raise ValueError("Value is None")
-            result = filters.pixelate(img, args.value)
+            result = filters.pixelate(img, int(args.value))
 
         if args.output is not None:
             output_path = os.path.join(
