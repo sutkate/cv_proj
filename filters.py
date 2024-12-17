@@ -57,40 +57,7 @@ def vignette(img, radius):
 
     return result
 
-def mouse_callback(event, x, y, flags, param):
-    if event == cv2.EVENT_LBUTTONDOWN:
-        param['drawing'] = True
-        param['start_point'] = (x, y)
-
-    elif event == cv2.EVENT_LBUTTONUP:
-        if param['drawing']:
-            param['end_point'] = (x, y)
-            img_copy = param['image'].copy()
-            cv2.rectangle(img_copy, param['start_point'], param['end_point'], (0, 255, 0), 2)
-            cv2.imshow('selected', img_copy)
-
-    elif event == cv2.EVENT_MOUSEMOVE:
-        param['drawing'] = False
-        param['end_point'] = (x, y)
-
-def select_region(img):
-    params = {'drawing': False, 'start_point': None, 'end_point': None, "image": img}
-    cv2.imshow('Select region', img)
-    cv2.setMouseCallback('Select region', mouse_callback, param=params)
-    cv2.waitKey(0)
-    cv2.destroyWindow('Select region')
-
-    if params['start_point'] and params['end_point']:
-        return (params['start_point'][0], params['start_point'][1],
-                params['end_point'][0] - params['start_point'][0],
-                params['end_point'][1] - params['start_point'][1])
-    else:
-        return None
-
-def pixelate(img, pixel_size):
-    print('select region')
-
-    region = select_region(img)
+def pixelate(img, pixel_size, region):
     if region is None:
         print('no region selected')
         return None
